@@ -1,0 +1,21 @@
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#roles {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  list-style: none;
+  padding: 0;
+}
+
+#form {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+}

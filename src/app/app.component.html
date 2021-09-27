@@ -1,0 +1,39 @@
+<form [formGroup]="form" (submit)="submit()">
+  <mat-card>
+    <div id="roles">
+      <mat-checkbox formControlName="directorRole">
+        Director
+      </mat-checkbox>
+      <mat-checkbox formControlName="secretaryRole">
+        Secretary
+      </mat-checkbox>
+      <mat-checkbox formControlName="shareholderRole">
+        Shareholder
+      </mat-checkbox>
+    </div>
+  </mat-card>
+
+  <mat-card id="form">
+    <mat-form-field appearance="outline" floatLabel="always">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" floatLabel="always">
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastName" />
+    </mat-form-field>
+    <mat-form-field
+      *ngIf="isAShareholder"
+      appearance="outline"
+      floatLabel="always"
+    >
+      <mat-label>Shares</mat-label>
+      <input matInput formControlName="shares" />
+      <span matSuffix>%</span>
+    </mat-form-field>
+  </mat-card>
+
+  <button mat-raised-button color="accent" type="submit">
+    Create Company Member
+  </button>
+</form>
