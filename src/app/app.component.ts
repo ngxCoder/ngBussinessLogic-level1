@@ -1,11 +1,11 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Subscription } from "rxjs";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
   form: FormGroup;
@@ -20,12 +20,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
   createForm() {
     this.form = this.fb.group({
-      directorRole: [""],
-      secretaryRole: [""],
-      shareholderRole: [""],
-      firstName: ["", Validators.required],
-      lastName: ["", Validators.required],
-      shares: [""]
+      directorRole: [''],
+      secretaryRole: [''],
+      shareholderRole: [''],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      shares: [''],
     });
   }
 
@@ -45,15 +45,15 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   get shareholderControl() {
-    return this.form.get("shareholderRole");
+    return this.form.get('shareholderRole');
   }
 
   get sharesControl() {
-    return this.form.get("shares");
+    return this.form.get('shares');
   }
 
   get isAShareholder() {
-    console.log('asking for shareholders')
+    console.log('asking for shareholders');
     return this.shareholderControl.value === true;
   }
 
