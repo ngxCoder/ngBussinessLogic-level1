@@ -9,7 +9,8 @@ import { Subscription } from 'rxjs';
 })
 export class AppComponent implements OnInit, OnDestroy {
   form: FormGroup;
-  subscription: Subscription;
+  directorSubscription: Subscription;
+  shareHolderSubscription: Subscription;
 
   constructor(private fb: FormBuilder) {}
 
@@ -30,18 +31,28 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   roleValidators() {
-    this.subscription = this.shareholderControl.valueChanges.subscribe(
+    this.directorSubscription = this.directorControl.valueChanges.subscribe(
       (value) => {
         if (value) {
-          console.log(value);
+          this.lastnameControl.setValidators([Validators.required]);
+        } else {
+          this.lastnameControl.clearValidators();
+        }
+
+        this.lastnameControl.updateValueAndValidity();
+      }
+    );
+
+    this.shareHolderSubscription =
+      this.shareholderControl.valueChanges.subscribe((value) => {
+        if (value) {
           this.sharesControl.setValidators([Validators.required]);
         } else {
           this.sharesControl.clearValidators();
         }
 
         this.sharesControl.updateValueAndValidity();
-      }
-    );
+      });
   }
 
   get shareholderControl() {
@@ -52,8 +63,16 @@ export class AppComponent implements OnInit, OnDestroy {
     return this.form.get('shares');
   }
 
+  get directorControl() {
+    return this.form.get('directorRole');
+  }
+
+  get lastnameControl() {
+    return this.form.get('lastName');
+  }
+
   get isAShareholder() {
-    console.log('asking for shareholders');
+    // console.log('asking for shareholders');
     return this.shareholderControl.value === true;
   }
 
@@ -66,6 +85,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.directorSubscription.unsubscribe();
+    this.shareHolderSubscription.unsubscribe();
   }
 }
