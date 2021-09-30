@@ -72,7 +72,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   get isAShareholder() {
-    // console.log('asking for shareholders');
+    console.log('asking for shareholders');
     return this.shareholderControl.value === true;
   }
 
